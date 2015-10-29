@@ -53,27 +53,48 @@ CreateMySQLUser()
 
 OnCreateDB()
 {
-    if [ "$ON_CREATE_DB" = "**False**" ]; then
-        unset ON_CREATE_DB
+    if [ "$ON_CREATE_DB_1" = "**False**" ]; then
+        unset ON_CREATE_DB_1
     else
-        echo "Creating MySQL database ${ON_CREATE_DB}"
-        mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB};"
+        echo "Creating MySQL database ${ON_CREATE_DB_1}"
+        mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB_1};"
+        echo "Database created!"
+    fi
+
+    if [ "$ON_CREATE_DB_2" = "**False**" ]; then
+        unset ON_CREATE_DB_2
+    else
+        echo "Creating MySQL database ${ON_CREATE_DB_2}"
+        mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB_2};"
         echo "Database created!"
     fi
 }
 
-ImportSql()
+ImportSql_1()
 {
-    for FILE in ${STARTUP_SQL}; do
-	    echo "=> Importing SQL file ${FILE}"
-        if [ "$ON_CREATE_DB" ]; then
-            mysql -uroot "$ON_CREATE_DB" < "${FILE}"
+    for FILE_1 in ${STARTUP_SQL_1}; do
+	    echo "=> Importing SQL file 1 ${FILE_1}"
+        if [ "$ON_CREATE_DB_1" ]; then
+            mysql -uroot "$ON_CREATE_DB_1" < "${FILE_1}"
         else
-            mysql -uroot < "${FILE}"
+            mysql -uroot < "${FILE_1}"
+        fi
+    done
+
+}
+
+ImportSql_2()
+{
+ 
+    for FILE_2 in ${STARTUP_SQL_2}; do
+	    echo "=> Importing SQL file 2 ${FILE_2}"
+        if [ "$ON_CREATE_DB_1" ]; then
+            mysql -uroot "$ON_CREATE_DB_2" < "${FILE_2}"
+        else
+            mysql -uroot < "${FILE_2}"
         fi
     done
 }
-
 # Main
 if [ ${REPLICATION_MASTER} == "**False**" ]; then
     unset REPLICATION_MASTER
@@ -144,12 +165,21 @@ if [ -f /var/lib/mysql/.EMPTY_DB ]; then
 fi
 
 
-# Import Startup SQL
-if [ -n "${STARTUP_SQL}" ]; then
+# Import Startup SQL 1
+if [ -n "${STARTUP_SQL_1}" ]; then
     if [ ! -f /sql_imported ]; then
-        echo "=> Initializing DB with ${STARTUP_SQL}"
-        ImportSql
-        touch /sql_imported
+        echo "=> Initializing DB with ${STARTUP_SQL_1}"
+        ImportSql_1
+        touch /sql_imported_1
+    fi
+fi
+
+# Import Startup SQL 2
+if [ -n "${STARTUP_SQL_2}" ]; then
+    if [ ! -f /sql_imported ]; then
+        echo "=> Initializing DB with ${STARTUP_SQL_2}"
+        ImportSql_2
+        touch /sql_imported_2
     fi
 fi
 
