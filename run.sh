@@ -167,19 +167,19 @@ fi
 
 # Import Startup SQL 1
 if [ -n "${STARTUP_SQL_1}" ]; then
-    if [ ! -f /sql_imported ]; then
+    if [ ! -d /var/lib/mysql/$ON_CREATE_DB_1 ]; then
         echo "=> Initializing DB with ${STARTUP_SQL_1}"
         ImportSql_1
-        touch /sql_imported_1
+         
     fi
 fi
 
 # Import Startup SQL 2
 if [ -n "${STARTUP_SQL_2}" ]; then
-    if [ ! -f /sql_imported ]; then
+    if [ ! -d var/lib/mysql/$ON_CREATE_DB_2 ]; then
         echo "=> Initializing DB with ${STARTUP_SQL_2}"
         ImportSql_2
-        touch /sql_imported_2
+       
     fi
 fi
 
