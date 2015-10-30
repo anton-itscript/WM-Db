@@ -26,7 +26,7 @@ ADD import_sql.sh /import_sql.sh
 #ADD run_clean.sh /run.sh
 ADD run.sh /run.sh
 
-№ADD install.sh /install.sh
+#ADD install.sh /install.sh
 
 
 RUN mkdir /tmp/wm_clear_databases
