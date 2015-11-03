@@ -53,21 +53,27 @@ CreateMySQLUser()
 
 OnCreateDB()
 {
-    if [ "$ON_CREATE_DB_1" = "**False**" ]; then
-        unset ON_CREATE_DB_1
-    else
-        echo "Creating MySQL database ${ON_CREATE_DB_1}"
-        mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB_1};"
-        echo "Database created!"
-    fi
+	if [ ! -d /var/lib/mysql/$ON_CREATE_DB_1 ]; then
+		    if [ "$ON_CREATE_DB_1" = "**False**" ]; then
+			unset ON_CREATE_DB_1
+		    else
+			echo "Creating MySQL database ${ON_CREATE_DB_1}"
+			mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB_1};"
+			echo "Database created!"
+			touch /database_1_created;
+		    fi
+	fi
+	if [ ! -d /var/lib/mysql/$ON_CREATE_DB_2 ]; then
 
-    if [ "$ON_CREATE_DB_2" = "**False**" ]; then
-        unset ON_CREATE_DB_2
-    else
-        echo "Creating MySQL database ${ON_CREATE_DB_2}"
-        mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB_2};"
-        echo "Database created!"
-    fi
+		    if [ "$ON_CREATE_DB_2" = "**False**" ]; then
+			unset ON_CREATE_DB_2
+		    else
+			echo "Creating MySQL database ${ON_CREATE_DB_2}"
+			mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB_2};"
+			echo "Database created!"
+			touch /database_2_created;
+		    fi
+	fi
 }
 
 ImportSql_1()
@@ -95,6 +101,8 @@ ImportSql_2()
         fi
     done
 }
+
+
 # Main
 if [ ${REPLICATION_MASTER} == "**False**" ]; then
     unset REPLICATION_MASTER
@@ -167,19 +175,19 @@ fi
 
 # Import Startup SQL 1
 if [ -n "${STARTUP_SQL_1}" ]; then
-    if [ ! -d /var/lib/mysql/$ON_CREATE_DB_1 ]; then
+    if [  -f /database_1_created ]; then
         echo "=> Initializing DB with ${STARTUP_SQL_1}"
         ImportSql_1
-         
+        rm /database_1_created; 
     fi
 fi
 
 # Import Startup SQL 2
 if [ -n "${STARTUP_SQL_2}" ]; then
-    if [ ! -d var/lib/mysql/$ON_CREATE_DB_2 ]; then
+    if [  -f /database_2_created ]; then
         echo "=> Initializing DB with ${STARTUP_SQL_2}"
         ImportSql_2
-       
+        rm /database_2_created; 
     fi
 fi
 

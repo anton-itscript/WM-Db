@@ -13,9 +13,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
 
 
 ENV MYSQL_USER=admin \
-    MYSQL_PASS=**Random** \
-    ON_CREATE_DB_1=**False** \
-    ON_CREATE_DB_2=**False** \
+    MYSQL_PASS=**False** \
     REPLICATION_MASTER=**False** \
     REPLICATION_SLAVE=**False** \
     REPLICATION_USER=replica \
@@ -23,10 +21,9 @@ ENV MYSQL_USER=admin \
 
 # Add MySQL scripts
 ADD import_sql.sh /import_sql.sh
-#ADD run_clean.sh /run.sh
 ADD run.sh /run.sh
 
-#ADD install.sh /install.sh
+
 
 
 RUN mkdir /tmp/wm_clear_databases
