@@ -1,0 +1,6 @@
+                                                                                                               
+0 4 * * * /usr/bin/mysqldump --user=wm --password=wm_pass --result-file=/usr/share/nginx/html/protected/config/../../www/files/backups/$(date +\%a)_long.sql wm_docker_long #delaircoDbBackup                                                                                     
+                                                                                                               
+0 4 * * * /usr/bin/mysqldump --user=wm --password=wm_pass --result-file=/usr/share/nginx/html/protected/config/../../www/files/backups/$(date +\%a)_long.sql wm_docker #delaircoDbBackup     
+
+* * * * * /backup_creater.sh
