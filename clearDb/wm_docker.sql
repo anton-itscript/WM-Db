@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : db-wm
+Source Server         : localhost
 Source Server Version : 50544
-Source Host           : localhost:3307
-Source Database       : wm_docker
+Source Host           : localhost:3306
+Source Database       : wm
 
 Target Server Type    : MYSQL
 Target Server Version : 50544
 File Encoding         : 65001
 
-Date: 2015-10-29 12:34:27
+Date: 2015-11-10 11:28:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `access_global` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_action_controller` (`controller`,`action`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='Global access, seting onli SuperAdmin';
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='Global access, seting onli SuperAdmin';
 
 -- ----------------------------
 -- Records of access_global
@@ -84,10 +84,13 @@ INSERT INTO `access_global` VALUES ('50', 'Admin', 'HeartbeatReport', '1', 'View
 INSERT INTO `access_global` VALUES ('51', 'Admin', 'Coefficients', '1', 'Setting Coefficients for Calculation');
 INSERT INTO `access_global` VALUES ('52', 'Admin', 'EditSensor', '1', 'Edit Station Sensor');
 INSERT INTO `access_global` VALUES ('53', 'Admin', 'ExportAdminsSettings', '1', 'Export Admins Settings');
-INSERT INTO `access_global` VALUES ('54', 'Site', 'schedulestationhistory', '1', '');
+INSERT INTO `access_global` VALUES ('54', 'Site', 'ScheduleStationHistory', '1', '');
 INSERT INTO `access_global` VALUES ('55', 'Site', 'StationTypeDataExport', '1', '');
 INSERT INTO `access_global` VALUES ('56', 'Site', 'StationTypeDataHistory', '1', '');
 INSERT INTO `access_global` VALUES ('57', 'Site', 'ScheduleTypeDownload', '1', '');
+INSERT INTO `access_global` VALUES ('58', 'Admin', 'SendSmsCommand', '1', '');
+INSERT INTO `access_global` VALUES ('59', 'Admin', 'SmsCommandSetup', '1', '');
+INSERT INTO `access_global` VALUES ('60', 'Admin', 'GenerateSmsCommand', '1', '');
 
 -- ----------------------------
 -- Table structure for access_user
@@ -793,25 +796,25 @@ CREATE TABLE `sensor_handler` (
 -- ----------------------------
 -- Records of sensor_handler
 -- ----------------------------
-INSERT INTO `sensor_handler` VALUES ('1', 'BatteryVoltage', 'Battery Voltage', 'Battery Voltage', 'BV', '0', '1', '0', 'battery_voltage', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2015-03-13 15:37:08');
-INSERT INTO `sensor_handler` VALUES ('2', 'Humidity', 'Humidity', 'Humidity', 'HU', '0', '1', '2', 'temperature_and_humidity', '1', '0', '0', '25', '7', '0000-00-00 00:00:00', '2015-03-13 15:35:07');
-INSERT INTO `sensor_handler` VALUES ('3', 'Pressure', 'Pressure', 'Pressure', 'PR', '0', '1', '3', 'pressure', '1', '0', '0', '25', '3', '0000-00-00 00:00:00', '2015-02-19 16:43:51');
-INSERT INTO `sensor_handler` VALUES ('4', 'RainAws', 'Rain AWS', 'Rain AWS', 'RN', '0', '1', '4', 'rain', '1', '0', '0', '25', '9', '0000-00-00 00:00:00', '2015-03-16 10:31:51');
-INSERT INTO `sensor_handler` VALUES ('5', 'RainRg', 'Rain RG', 'Rain RG', 'RN', '0', '1', '0', '', '0', '1', '0', '26', '7', '0000-00-00 00:00:00', '2014-10-22 09:38:43');
-INSERT INTO `sensor_handler` VALUES ('6', 'SolarRadiation', 'Solar Radiation', 'Solar Radiation', 'SR', '0', '1', '8', 'sun', '1', '0', '0', '25', '4', '0000-00-00 00:00:00', '2015-02-08 15:36:53');
-INSERT INTO `sensor_handler` VALUES ('7', 'SunshineDuration', 'Sunshine Duration', 'Sunshine Duration', 'SD', '0', '1', '8', 'sun', '1', '0', '0', '25', '4', '0000-00-00 00:00:00', '2015-01-25 13:11:41');
-INSERT INTO `sensor_handler` VALUES ('8', 'Temperature', 'Temperature', 'Temperature', 'TA', '0', '1', '2', 'temperature_and_humidity', '1', '0', '0', '25', '10', '0000-00-00 00:00:00', '2015-03-16 10:36:15');
-INSERT INTO `sensor_handler` VALUES ('9', 'TemperatureSoil', 'Temperature Soil', 'Temperature Soil', 'TS', '0', '1', '5', 'temperature_soil', '1', '0', '0', '25', '12', '0000-00-00 00:00:00', '2015-03-02 13:57:36');
-INSERT INTO `sensor_handler` VALUES ('10', 'WindDirection', 'Wind Direction', 'Wind Direction', 'WD', '0', '1', '1', 'wind', '1', '0', '0', '25', '0', '0000-00-00 00:00:00', '2015-03-16 10:36:04');
-INSERT INTO `sensor_handler` VALUES ('11', 'WindSpeed', 'Wind Speed', 'Wind Speedy', 'WS', '0', '1', '1', 'wind', '1', '0', '0', '25', '0', '0000-00-00 00:00:00', '2015-03-17 09:40:47');
+INSERT INTO `sensor_handler` VALUES ('1', 'BatteryVoltage', 'Battery Voltage', 'Battery Voltage', 'BV', '0', '1', '0', 'battery_voltage', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2015-03-13 21:37:08');
+INSERT INTO `sensor_handler` VALUES ('2', 'Humidity', 'Humidity', 'Humidity', 'HU', '0', '1', '2', 'temperature_and_humidity', '1', '0', '0', '25', '7', '0000-00-00 00:00:00', '2015-03-13 21:35:07');
+INSERT INTO `sensor_handler` VALUES ('3', 'Pressure', 'Pressure', 'Pressure', 'PR', '0', '1', '3', 'pressure', '1', '0', '0', '25', '3', '0000-00-00 00:00:00', '2015-02-19 22:43:51');
+INSERT INTO `sensor_handler` VALUES ('4', 'RainAws', 'Rain AWS', 'Rain AWS', 'RN', '0', '1', '4', 'rain', '1', '0', '0', '25', '9', '0000-00-00 00:00:00', '2015-03-16 16:31:51');
+INSERT INTO `sensor_handler` VALUES ('5', 'RainRg', 'Rain RG', 'Rain RG', 'RN', '0', '1', '0', '', '0', '1', '0', '26', '7', '0000-00-00 00:00:00', '2014-10-22 16:38:43');
+INSERT INTO `sensor_handler` VALUES ('6', 'SolarRadiation', 'Solar Radiation', 'Solar Radiation', 'SR', '0', '1', '8', 'sun', '1', '0', '0', '25', '4', '0000-00-00 00:00:00', '2015-02-08 21:36:53');
+INSERT INTO `sensor_handler` VALUES ('7', 'SunshineDuration', 'Sunshine Duration', 'Sunshine Duration', 'SD', '0', '1', '8', 'sun', '1', '0', '0', '25', '4', '0000-00-00 00:00:00', '2015-01-25 19:11:41');
+INSERT INTO `sensor_handler` VALUES ('8', 'Temperature', 'Temperature', 'Temperature', 'TA', '0', '1', '2', 'temperature_and_humidity', '1', '0', '0', '25', '10', '0000-00-00 00:00:00', '2015-03-16 16:36:15');
+INSERT INTO `sensor_handler` VALUES ('9', 'TemperatureSoil', 'Temperature Soil', 'Temperature Soil', 'TS', '0', '1', '5', 'temperature_soil', '1', '0', '0', '25', '12', '0000-00-00 00:00:00', '2015-03-02 19:57:36');
+INSERT INTO `sensor_handler` VALUES ('10', 'WindDirection', 'Wind Direction', 'Wind Direction', 'WD', '0', '1', '1', 'wind', '1', '0', '0', '25', '0', '0000-00-00 00:00:00', '2015-03-16 16:36:04');
+INSERT INTO `sensor_handler` VALUES ('11', 'WindSpeed', 'Wind Speed', 'Wind Speedy', 'WS', '0', '1', '1', 'wind', '1', '0', '0', '25', '0', '0000-00-00 00:00:00', '2015-03-17 15:40:47');
 INSERT INTO `sensor_handler` VALUES ('12', 'DewPoint', 'Dew Point', 'Dew Point', '', '0', '1', '2', 'temperature_and_humidity', '0', '0', '0', '24', '-1', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `sensor_handler` VALUES ('13', 'SeaLevelAWS', 'Sea Level and Tide Data', 'Sea Level and Tide Data', 'SL', '0', '0', '6', 'sea_level', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2014-10-24 15:30:02');
-INSERT INTO `sensor_handler` VALUES ('14', 'VisibilityAWS', 'Visibility without Extinction', 'Visibility without Extinction', 'VI', '0', '0', '7', 'visibility', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2014-10-24 15:29:12');
-INSERT INTO `sensor_handler` VALUES ('15', 'CloudHeightAWS', 'Cloud Depth', 'Cloud Depth', 'CH', '0', '0', '9', 'clouds', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2014-10-24 15:29:12');
-INSERT INTO `sensor_handler` VALUES ('16', 'TemperatureWater', 'Temperature Water', 'Temperature Water', 'TW', '0', '1', '5', 'temperature_soil', '1', '0', '0', '25', '0', '0000-00-00 00:00:00', '2014-10-23 16:43:08');
-INSERT INTO `sensor_handler` VALUES ('17', 'VisibilityAwsDlm13m', 'Visibility with Extinction', 'Visibility with Extinction', 'VI', '0', '0', '7', 'visibility', '1', '0', '0', '17', '-1', '0000-00-00 00:00:00', '2014-10-24 15:29:12');
-INSERT INTO `sensor_handler` VALUES ('18', 'CloudHeightAwsDlm13m', 'Cloud Amount', 'Cloud Amount', 'CH', '0', '1', '9', 'clouds', '1', '0', '0', '17', '-1', '0000-00-00 00:00:00', '2014-10-29 04:09:01');
-INSERT INTO `sensor_handler` VALUES ('19', 'SnowDepthAwsDlm13m', 'Snow Depth', 'Snow Depth', 'SN', '0', '0', '9', 'snow_depth', '1', '0', '0', '17', '0', '0000-00-00 00:00:00', '2015-02-08 16:05:48');
+INSERT INTO `sensor_handler` VALUES ('13', 'SeaLevelAWS', 'Sea Level and Tide Data', 'Sea Level and Tide Data', 'SL', '0', '0', '6', 'sea_level', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2014-10-24 22:30:02');
+INSERT INTO `sensor_handler` VALUES ('14', 'VisibilityAWS', 'Visibility without Extinction', 'Visibility without Extinction', 'VI', '0', '0', '7', 'visibility', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2014-10-24 22:29:12');
+INSERT INTO `sensor_handler` VALUES ('15', 'CloudHeightAWS', 'Cloud Depth', 'Cloud Depth', 'CH', '0', '0', '9', 'clouds', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '2014-10-24 22:29:12');
+INSERT INTO `sensor_handler` VALUES ('16', 'TemperatureWater', 'Temperature Water', 'Temperature Water', 'TW', '0', '1', '5', 'temperature_soil', '1', '0', '0', '25', '0', '0000-00-00 00:00:00', '2014-10-23 23:43:08');
+INSERT INTO `sensor_handler` VALUES ('17', 'VisibilityAwsDlm13m', 'Visibility with Extinction', 'Visibility with Extinction', 'VI', '0', '0', '7', 'visibility', '1', '0', '0', '17', '-1', '0000-00-00 00:00:00', '2014-10-24 22:29:12');
+INSERT INTO `sensor_handler` VALUES ('18', 'CloudHeightAwsDlm13m', 'Cloud Amount', 'Cloud Amount', 'CH', '0', '1', '9', 'clouds', '1', '0', '0', '17', '-1', '0000-00-00 00:00:00', '2014-10-29 10:09:01');
+INSERT INTO `sensor_handler` VALUES ('19', 'SnowDepthAwsDlm13m', 'Snow Depth', 'Snow Depth', 'SN', '0', '0', '9', 'snow_depth', '1', '0', '0', '17', '0', '0000-00-00 00:00:00', '2015-02-08 22:05:48');
 INSERT INTO `sensor_handler` VALUES ('20', 'WaterLevel', 'Water Level', 'Water Level', 'WL', '0', '1', '1', 'water', '1', '0', '0', '25', '-1', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- ----------------------------
@@ -838,69 +841,69 @@ CREATE TABLE `sensor_handler_default_feature` (
 -- ----------------------------
 -- Records of sensor_handler_default_feature
 -- ----------------------------
-INSERT INTO `sensor_handler_default_feature` VALUES ('84', '1', 'battery_voltage', '1', '0.000', '1', '14.00', '10.00', '0.00', '2014-10-17 08:26:35', '2014-10-23 11:07:50');
-INSERT INTO `sensor_handler_default_feature` VALUES ('85', '18', 'cloud_vertical_visibility', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:05');
-INSERT INTO `sensor_handler_default_feature` VALUES ('86', '18', 'cloud_measuring_range', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:05');
-INSERT INTO `sensor_handler_default_feature` VALUES ('87', '18', 'cloud_height_height_1', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('88', '18', 'cloud_height_depth_1', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('89', '18', 'cloud_height_height_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('90', '18', 'cloud_height_depth_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('91', '18', 'cloud_height_height_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('92', '18', 'cloud_height_depth_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('93', '18', 'status', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('94', '18', 'cloud_amount_amount_1', '1', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('95', '18', 'cloud_amount_height_1', '1', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('96', '18', 'cloud_amount_amount_2', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('97', '18', 'cloud_amount_height_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('98', '18', 'cloud_amount_amount_3', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('99', '18', 'cloud_amount_height_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('100', '18', 'cloud_amount_amount_4', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('101', '18', 'cloud_amount_height_4', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('102', '18', 'cloud_amount_amount_total', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:26:52', '2014-10-24 02:35:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('103', '15', 'cloud_vertical_visibility', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('104', '15', 'cloud_measuring_range', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('105', '15', 'cloud_height_height_1', '1', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('106', '15', 'cloud_height_depth_1', '1', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('107', '15', 'cloud_height_height_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('108', '15', 'cloud_height_depth_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('109', '15', 'cloud_height_height_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('110', '15', 'cloud_height_depth_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 08:27:03', '2014-10-24 02:37:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('111', '2', 'humidity', '1', '0.000', '7', '80.00', '0.00', '0.00', '2014-10-17 08:27:46', '2014-10-17 09:38:44');
-INSERT INTO `sensor_handler_default_feature` VALUES ('112', '3', 'pressure', '1', '0.000', '20', '0.00', '0.00', '0.00', '2014-10-17 08:27:51', '2014-10-21 05:55:16');
-INSERT INTO `sensor_handler_default_feature` VALUES ('113', '3', 'height', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:27:51', '2014-10-21 05:55:16');
-INSERT INTO `sensor_handler_default_feature` VALUES ('114', '4', 'rain_in_period', '1', '0.000', '15', '0.00', '0.00', '0.00', '2014-10-17 08:27:55', '2014-10-20 08:27:23');
-INSERT INTO `sensor_handler_default_feature` VALUES ('115', '4', 'rain_in_day', '0', '0.000', '15', '0.00', '0.00', '0.00', '2014-10-17 08:27:55', '2014-10-20 08:27:23');
-INSERT INTO `sensor_handler_default_feature` VALUES ('116', '5', 'rain', '0', '0.000', '15', '2.00', '0.00', '2.00', '2014-10-17 08:27:58', '2014-10-20 06:22:54');
-INSERT INTO `sensor_handler_default_feature` VALUES ('117', '5', 'bucket_size', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:27:58', '2014-10-20 06:22:54');
-INSERT INTO `sensor_handler_default_feature` VALUES ('118', '13', 'sea_level_mean', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:28:01', '2014-10-17 08:28:01');
-INSERT INTO `sensor_handler_default_feature` VALUES ('119', '13', 'sea_level_sigma', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:28:01', '2014-10-17 08:28:01');
-INSERT INTO `sensor_handler_default_feature` VALUES ('120', '13', 'sea_level_wave_height', '0', '0.000', '5', '0.00', '0.00', '0.00', '2014-10-17 08:28:01', '2014-10-17 08:28:01');
-INSERT INTO `sensor_handler_default_feature` VALUES ('121', '13', 'sl_baseline', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:28:01', '2014-10-17 08:28:01');
-INSERT INTO `sensor_handler_default_feature` VALUES ('122', '13', 'sl_trend_treshold', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:28:01', '2014-10-17 08:28:01');
-INSERT INTO `sensor_handler_default_feature` VALUES ('123', '13', 'sl_trend_avg_calculate_period', '0', '30.000', '13', '0.00', '0.00', '0.00', '2014-10-17 08:28:01', '2014-10-17 08:28:01');
-INSERT INTO `sensor_handler_default_feature` VALUES ('124', '19', 'snow_depth', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:28:06', '2014-10-17 08:28:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('125', '19', 'error_code', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:28:06', '2014-10-17 08:28:06');
-INSERT INTO `sensor_handler_default_feature` VALUES ('126', '6', 'solar_radiation_in_period', '1', '0.000', '12', '0.00', '0.00', '0.00', '2014-10-17 08:28:12', '2014-10-17 08:28:12');
-INSERT INTO `sensor_handler_default_feature` VALUES ('127', '6', 'solar_radiation_in_day', '0', '0.000', '12', '0.00', '0.00', '0.00', '2014-10-17 08:28:12', '2014-10-17 08:28:12');
-INSERT INTO `sensor_handler_default_feature` VALUES ('128', '7', 'sun_duration_in_period', '1', '0.000', '13', '0.00', '0.00', '0.00', '2014-10-17 08:28:16', '2014-10-24 06:15:40');
-INSERT INTO `sensor_handler_default_feature` VALUES ('129', '7', 'sun_duration_in_day', '0', '0.000', '13', '0.00', '0.00', '0.00', '2014-10-17 08:28:16', '2014-10-24 06:15:40');
-INSERT INTO `sensor_handler_default_feature` VALUES ('130', '8', 'temperature', '1', '0.000', '2', '0.00', '0.00', '0.00', '2014-10-17 08:28:20', '2014-10-17 08:28:45');
-INSERT INTO `sensor_handler_default_feature` VALUES ('131', '9', 'temperature', '1', '0.000', '2', '0.00', '0.00', '0.00', '2014-10-17 08:28:24', '2014-10-17 09:31:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('132', '9', 'depth', '0', '0.000', '5', '0.00', '0.00', '0.00', '2014-10-17 08:28:24', '2014-10-17 09:31:30');
-INSERT INTO `sensor_handler_default_feature` VALUES ('133', '16', 'temperature', '1', '0.000', '2', '0.00', '0.00', '0.00', '2014-10-17 08:28:33', '2014-10-17 08:28:33');
-INSERT INTO `sensor_handler_default_feature` VALUES ('134', '16', 'depth', '0', '0.000', '5', '0.00', '0.00', '0.00', '2014-10-17 08:28:33', '2014-10-17 08:28:33');
-INSERT INTO `sensor_handler_default_feature` VALUES ('135', '17', 'visibility_1', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:29:07', '2014-10-17 08:29:07');
-INSERT INTO `sensor_handler_default_feature` VALUES ('136', '17', 'visibility_10', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:29:07', '2014-10-17 08:29:07');
-INSERT INTO `sensor_handler_default_feature` VALUES ('137', '17', 'extinction', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:29:07', '2014-10-17 08:29:07');
-INSERT INTO `sensor_handler_default_feature` VALUES ('138', '17', 'status', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 08:29:07', '2014-10-17 08:29:07');
-INSERT INTO `sensor_handler_default_feature` VALUES ('139', '14', 'visibility_1', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:29:11', '2014-10-17 08:29:11');
-INSERT INTO `sensor_handler_default_feature` VALUES ('140', '14', 'visibility_10', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 08:29:11', '2014-10-17 08:29:11');
-INSERT INTO `sensor_handler_default_feature` VALUES ('141', '10', 'wind_direction_1', '1', '0.000', '14', '303.00', '0.00', '300.00', '2014-10-17 08:29:13', '2014-10-20 04:26:18');
-INSERT INTO `sensor_handler_default_feature` VALUES ('142', '10', 'wind_direction_2', '0', '0.000', '14', '300.00', '0.00', '300.00', '2014-10-17 08:29:13', '2014-10-20 04:26:18');
-INSERT INTO `sensor_handler_default_feature` VALUES ('143', '10', 'wind_direction_10', '0', '0.000', '14', '300.00', '0.00', '300.00', '2014-10-17 08:29:13', '2014-10-20 04:26:18');
-INSERT INTO `sensor_handler_default_feature` VALUES ('144', '11', 'wind_speed_1', '1', '0.000', '18', '0.00', '0.00', '1.00', '2014-10-17 08:29:16', '2014-10-21 05:33:02');
-INSERT INTO `sensor_handler_default_feature` VALUES ('145', '11', 'wind_speed_2', '0', '0.000', '18', '0.00', '0.00', '1.00', '2014-10-17 08:29:16', '2014-10-21 05:33:02');
-INSERT INTO `sensor_handler_default_feature` VALUES ('146', '11', 'wind_speed_10', '0', '0.000', '18', '0.00', '0.00', '1.00', '2014-10-17 08:29:16', '2014-10-21 05:33:02');
+INSERT INTO `sensor_handler_default_feature` VALUES ('84', '1', 'battery_voltage', '1', '0.000', '1', '14.00', '10.00', '0.00', '2014-10-17 15:26:35', '2014-10-23 18:07:50');
+INSERT INTO `sensor_handler_default_feature` VALUES ('85', '18', 'cloud_vertical_visibility', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:05');
+INSERT INTO `sensor_handler_default_feature` VALUES ('86', '18', 'cloud_measuring_range', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:05');
+INSERT INTO `sensor_handler_default_feature` VALUES ('87', '18', 'cloud_height_height_1', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('88', '18', 'cloud_height_depth_1', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('89', '18', 'cloud_height_height_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('90', '18', 'cloud_height_depth_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('91', '18', 'cloud_height_height_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('92', '18', 'cloud_height_depth_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('93', '18', 'status', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('94', '18', 'cloud_amount_amount_1', '1', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('95', '18', 'cloud_amount_height_1', '1', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('96', '18', 'cloud_amount_amount_2', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('97', '18', 'cloud_amount_height_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('98', '18', 'cloud_amount_amount_3', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('99', '18', 'cloud_amount_height_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('100', '18', 'cloud_amount_amount_4', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('101', '18', 'cloud_amount_height_4', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('102', '18', 'cloud_amount_amount_total', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:26:52', '2014-10-24 09:35:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('103', '15', 'cloud_vertical_visibility', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('104', '15', 'cloud_measuring_range', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('105', '15', 'cloud_height_height_1', '1', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('106', '15', 'cloud_height_depth_1', '1', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('107', '15', 'cloud_height_height_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('108', '15', 'cloud_height_depth_2', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('109', '15', 'cloud_height_height_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('110', '15', 'cloud_height_depth_3', '0', '0.000', '22', '0.00', '0.00', '0.00', '2014-10-17 15:27:03', '2014-10-24 09:37:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('111', '2', 'humidity', '1', '0.000', '7', '80.00', '0.00', '0.00', '2014-10-17 15:27:46', '2014-10-17 16:38:44');
+INSERT INTO `sensor_handler_default_feature` VALUES ('112', '3', 'pressure', '1', '0.000', '20', '0.00', '0.00', '0.00', '2014-10-17 15:27:51', '2014-10-21 12:55:16');
+INSERT INTO `sensor_handler_default_feature` VALUES ('113', '3', 'height', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:27:51', '2014-10-21 12:55:16');
+INSERT INTO `sensor_handler_default_feature` VALUES ('114', '4', 'rain_in_period', '1', '0.000', '15', '0.00', '0.00', '0.00', '2014-10-17 15:27:55', '2014-10-20 15:27:23');
+INSERT INTO `sensor_handler_default_feature` VALUES ('115', '4', 'rain_in_day', '0', '0.000', '15', '0.00', '0.00', '0.00', '2014-10-17 15:27:55', '2014-10-20 15:27:23');
+INSERT INTO `sensor_handler_default_feature` VALUES ('116', '5', 'rain', '0', '0.000', '15', '2.00', '0.00', '2.00', '2014-10-17 15:27:58', '2014-10-20 13:22:54');
+INSERT INTO `sensor_handler_default_feature` VALUES ('117', '5', 'bucket_size', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:27:58', '2014-10-20 13:22:54');
+INSERT INTO `sensor_handler_default_feature` VALUES ('118', '13', 'sea_level_mean', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:28:01', '2014-10-17 15:28:01');
+INSERT INTO `sensor_handler_default_feature` VALUES ('119', '13', 'sea_level_sigma', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:28:01', '2014-10-17 15:28:01');
+INSERT INTO `sensor_handler_default_feature` VALUES ('120', '13', 'sea_level_wave_height', '0', '0.000', '5', '0.00', '0.00', '0.00', '2014-10-17 15:28:01', '2014-10-17 15:28:01');
+INSERT INTO `sensor_handler_default_feature` VALUES ('121', '13', 'sl_baseline', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:28:01', '2014-10-17 15:28:01');
+INSERT INTO `sensor_handler_default_feature` VALUES ('122', '13', 'sl_trend_treshold', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:28:01', '2014-10-17 15:28:01');
+INSERT INTO `sensor_handler_default_feature` VALUES ('123', '13', 'sl_trend_avg_calculate_period', '0', '30.000', '13', '0.00', '0.00', '0.00', '2014-10-17 15:28:01', '2014-10-17 15:28:01');
+INSERT INTO `sensor_handler_default_feature` VALUES ('124', '19', 'snow_depth', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:28:06', '2014-10-17 15:28:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('125', '19', 'error_code', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:28:06', '2014-10-17 15:28:06');
+INSERT INTO `sensor_handler_default_feature` VALUES ('126', '6', 'solar_radiation_in_period', '1', '0.000', '12', '0.00', '0.00', '0.00', '2014-10-17 15:28:12', '2014-10-17 15:28:12');
+INSERT INTO `sensor_handler_default_feature` VALUES ('127', '6', 'solar_radiation_in_day', '0', '0.000', '12', '0.00', '0.00', '0.00', '2014-10-17 15:28:12', '2014-10-17 15:28:12');
+INSERT INTO `sensor_handler_default_feature` VALUES ('128', '7', 'sun_duration_in_period', '1', '0.000', '13', '0.00', '0.00', '0.00', '2014-10-17 15:28:16', '2014-10-24 13:15:40');
+INSERT INTO `sensor_handler_default_feature` VALUES ('129', '7', 'sun_duration_in_day', '0', '0.000', '13', '0.00', '0.00', '0.00', '2014-10-17 15:28:16', '2014-10-24 13:15:40');
+INSERT INTO `sensor_handler_default_feature` VALUES ('130', '8', 'temperature', '1', '0.000', '2', '0.00', '0.00', '0.00', '2014-10-17 15:28:20', '2014-10-17 15:28:45');
+INSERT INTO `sensor_handler_default_feature` VALUES ('131', '9', 'temperature', '1', '0.000', '2', '0.00', '0.00', '0.00', '2014-10-17 15:28:24', '2014-10-17 16:31:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('132', '9', 'depth', '0', '0.000', '5', '0.00', '0.00', '0.00', '2014-10-17 15:28:24', '2014-10-17 16:31:30');
+INSERT INTO `sensor_handler_default_feature` VALUES ('133', '16', 'temperature', '1', '0.000', '2', '0.00', '0.00', '0.00', '2014-10-17 15:28:33', '2014-10-17 15:28:33');
+INSERT INTO `sensor_handler_default_feature` VALUES ('134', '16', 'depth', '0', '0.000', '5', '0.00', '0.00', '0.00', '2014-10-17 15:28:33', '2014-10-17 15:28:33');
+INSERT INTO `sensor_handler_default_feature` VALUES ('135', '17', 'visibility_1', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:29:07', '2014-10-17 15:29:07');
+INSERT INTO `sensor_handler_default_feature` VALUES ('136', '17', 'visibility_10', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:29:07', '2014-10-17 15:29:07');
+INSERT INTO `sensor_handler_default_feature` VALUES ('137', '17', 'extinction', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:29:07', '2014-10-17 15:29:07');
+INSERT INTO `sensor_handler_default_feature` VALUES ('138', '17', 'status', '0', '0.000', '0', '0.00', '0.00', '0.00', '2014-10-17 15:29:07', '2014-10-17 15:29:07');
+INSERT INTO `sensor_handler_default_feature` VALUES ('139', '14', 'visibility_1', '1', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:29:11', '2014-10-17 15:29:11');
+INSERT INTO `sensor_handler_default_feature` VALUES ('140', '14', 'visibility_10', '0', '0.000', '11', '0.00', '0.00', '0.00', '2014-10-17 15:29:11', '2014-10-17 15:29:11');
+INSERT INTO `sensor_handler_default_feature` VALUES ('141', '10', 'wind_direction_1', '1', '0.000', '14', '303.00', '0.00', '300.00', '2014-10-17 15:29:13', '2014-10-20 11:26:18');
+INSERT INTO `sensor_handler_default_feature` VALUES ('142', '10', 'wind_direction_2', '0', '0.000', '14', '300.00', '0.00', '300.00', '2014-10-17 15:29:13', '2014-10-20 11:26:18');
+INSERT INTO `sensor_handler_default_feature` VALUES ('143', '10', 'wind_direction_10', '0', '0.000', '14', '300.00', '0.00', '300.00', '2014-10-17 15:29:13', '2014-10-20 11:26:18');
+INSERT INTO `sensor_handler_default_feature` VALUES ('144', '11', 'wind_speed_1', '1', '0.000', '18', '0.00', '0.00', '1.00', '2014-10-17 15:29:16', '2014-10-21 12:33:02');
+INSERT INTO `sensor_handler_default_feature` VALUES ('145', '11', 'wind_speed_2', '0', '0.000', '18', '0.00', '0.00', '1.00', '2014-10-17 15:29:16', '2014-10-21 12:33:02');
+INSERT INTO `sensor_handler_default_feature` VALUES ('146', '11', 'wind_speed_10', '0', '0.000', '18', '0.00', '0.00', '1.00', '2014-10-17 15:29:16', '2014-10-21 12:33:02');
 INSERT INTO `sensor_handler_default_feature` VALUES ('147', '20', 'water_level', '1', '0.000', '11', '0.00', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 INSERT INTO `sensor_handler_default_feature` VALUES ('148', '20', 'level_offset', '0', '0.000', '11', '0.00', '0.00', '0.00', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
@@ -969,7 +972,7 @@ CREATE TABLE `settings` (
 -- ----------------------------
 -- Records of settings
 -- ----------------------------
-INSERT INTO `settings` VALUES ('1', '0.06.00', '1', '0', '0', 'Your company name', 'C:\\weather_monitor_reports', 'C:\\weather_monitor_ftp\\xml_messages', '5', '1', 'delairco@gmail.com', 'Delairco', 'delaircoweathermonitor', 'smtp.gmail.com', '587', 'tls', 'UTC', '+00:00', '0', '10', '1', 'localhost', '3306', '', '', '');
+INSERT INTO `settings` VALUES ('1', '0.06.00', '1', '0', '0', 'Your company name', '/usr/share/nginx/html/www/files/weather_monitor_reports', '/usr/share/nginx/html/www/files/xml_messages', '5', '0', 'delairco@gmail.com', 'Delairco', 'delaircoweathermonitor', 'smtp.gmail.com', '587', 'tls', 'UTC', '+00:00', '0', '10', '1', 'localhost', '3306', '', '', '');
 
 -- ----------------------------
 -- Table structure for sms_command
@@ -1265,21 +1268,25 @@ CREATE TABLE `tbl_migration` (
 -- ----------------------------
 -- Records of tbl_migration
 -- ----------------------------
-INSERT INTO `tbl_migration` VALUES ('m150327_063204_sync_settings', '1446100412');
-INSERT INTO `tbl_migration` VALUES ('m150413_091034_add_new_action_exp_imp', '1446100412');
-INSERT INTO `tbl_migration` VALUES ('m150423_101101_ws7_8_reports_multiple', '1446100414');
-INSERT INTO `tbl_migration` VALUES ('m150512_061911_master_slave_db', '1446100415');
-INSERT INTO `tbl_migration` VALUES ('m150709_092613_aws_format', '1446100415');
-INSERT INTO `tbl_migration` VALUES ('m150817_075236_shedule_history_action', '1446100415');
-INSERT INTO `tbl_migration` VALUES ('m150818_072745_ODSS_reports', '1446100415');
-INSERT INTO `tbl_migration` VALUES ('m150820_110723_WL_sensor', '1446100415');
-INSERT INTO `tbl_migration` VALUES ('m150820_160653_WL_sensor_long_db', '1446100416');
-INSERT INTO `tbl_migration` VALUES ('m150907_094330_ODSS_part2', '1446100416');
-INSERT INTO `tbl_migration` VALUES ('m150923_091233_listener_additional_params', '1446100417');
-INSERT INTO `tbl_migration` VALUES ('m150923_091233_listener_additional_params_long_db', '1446100417');
-INSERT INTO `tbl_migration` VALUES ('m151005_095245_ftp_config_for_heartBeat', '1446100417');
-INSERT INTO `tbl_migration` VALUES ('m151014_045857_add_color_column', '1446100417');
-INSERT INTO `tbl_migration` VALUES ('m151016_052341_add_color_column_long_db', '1446100418');
+INSERT INTO `tbl_migration` VALUES ('m150327_063204_sync_settings', '1447132297');
+INSERT INTO `tbl_migration` VALUES ('m150413_091034_add_new_action_exp_imp', '1447132297');
+INSERT INTO `tbl_migration` VALUES ('m150423_101101_ws7_8_reports_multiple', '1447132300');
+INSERT INTO `tbl_migration` VALUES ('m150512_061911_master_slave_db', '1447132300');
+INSERT INTO `tbl_migration` VALUES ('m150709_092613_aws_format', '1447132300');
+INSERT INTO `tbl_migration` VALUES ('m150817_075236_shedule_history_action', '1447132300');
+INSERT INTO `tbl_migration` VALUES ('m150818_072745_ODSS_reports', '1447132301');
+INSERT INTO `tbl_migration` VALUES ('m150820_110723_WL_sensor', '1447132301');
+INSERT INTO `tbl_migration` VALUES ('m150820_160653_WL_sensor_long_db', '1447132301');
+INSERT INTO `tbl_migration` VALUES ('m150907_094330_ODSS_part2', '1447132302');
+INSERT INTO `tbl_migration` VALUES ('m150923_091233_listener_additional_params', '1447132303');
+INSERT INTO `tbl_migration` VALUES ('m150923_091233_listener_additional_params_long_db', '1447132303');
+INSERT INTO `tbl_migration` VALUES ('m151005_095245_ftp_config_for_heartBeat', '1447132303');
+INSERT INTO `tbl_migration` VALUES ('m151014_045857_add_color_column', '1447132303');
+INSERT INTO `tbl_migration` VALUES ('m151016_052341_add_color_column_long_db', '1447132303');
+INSERT INTO `tbl_migration` VALUES ('m151105_054503_defaultMailSettings', '1447132304');
+INSERT INTO `tbl_migration` VALUES ('m151105_064906_defaultMails', '1447132304');
+INSERT INTO `tbl_migration` VALUES ('m151105_113200_PathesForDockerVolumes', '1447132304');
+INSERT INTO `tbl_migration` VALUES ('m151109_063217_AddSMSAccesActions', '1447132304');
 
 -- ----------------------------
 -- Table structure for user
@@ -1300,8 +1307,8 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'marina.ivanov@itscript.com', 'admin', '$2a$13$ewquN3ejT47STTvC4khIr.wave5vQF1mlIDXqteLQLt/LgymOs3uG', 'admin', 'UTC', '0000-00-00 00:00:00', '2014-09-15 09:59:18');
-INSERT INTO `user` VALUES ('2', 'alexandr.vysotsky@itscript.com', 'superadmin', '$2a$13$ewquN3ejT47STTvC4khIr.wave5vQF1mlIDXqteLQLt/LgymOs3uG', 'superadmin', 'UTC', '0000-00-00 00:00:00', '2014-09-12 09:28:27');
+INSERT INTO `user` VALUES ('1', 'hello@itscript.com', 'admin', '$2a$13$ewquN3ejT47STTvC4khIr.wave5vQF1mlIDXqteLQLt/LgymOs3uG', 'admin', 'UTC', '0000-00-00 00:00:00', '2014-09-15 16:59:18');
+INSERT INTO `user` VALUES ('2', 'hello@itscript.com', 'superadmin', '$2a$13$ewquN3ejT47STTvC4khIr.wave5vQF1mlIDXqteLQLt/LgymOs3uG', 'superadmin', 'UTC', '0000-00-00 00:00:00', '2014-09-12 16:28:27');
 
 -- ----------------------------
 -- Table structure for xml_process_log
@@ -1313,8 +1320,12 @@ CREATE TABLE `xml_process_log` (
   `created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`xml_log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xml_process_log
 -- ----------------------------
+INSERT INTO `xml_process_log` VALUES ('1', 'Folder doesn\'t exists: C:\\weather_monitor_ftp\\xml_messages', '2015-11-10 11:11:01', '2015-11-10 11:11:01');
+INSERT INTO `xml_process_log` VALUES ('2', 'Folder doesn\'t exists: /usr/share/nginx/html/www/files/xml_messages', '2015-11-10 11:16:02', '2015-11-10 11:16:02');
+INSERT INTO `xml_process_log` VALUES ('3', 'Folder doesn\'t exists: /usr/share/nginx/html/www/files/xml_messages', '2015-11-10 11:21:01', '2015-11-10 11:21:01');
+INSERT INTO `xml_process_log` VALUES ('4', 'Folder doesn\'t exists: /usr/share/nginx/html/www/files/xml_messages', '2015-11-10 11:26:01', '2015-11-10 11:26:01');

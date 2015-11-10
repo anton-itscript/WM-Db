@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : db-wm
+Source Server         : localhost
 Source Server Version : 50544
-Source Host           : localhost:3307
-Source Database       : wm_docker_long
+Source Host           : localhost:3306
+Source Database       : wm_long
 
 Target Server Type    : MYSQL
 Target Server Version : 50544
 File Encoding         : 65001
 
-Date: 2015-10-29 12:34:54
+Date: 2015-11-10 11:28:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
